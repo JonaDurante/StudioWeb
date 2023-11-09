@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/StudioWeb/bin/Debug/net7.0
+/StudioWeb/appsettings.Development.json
+/StudioWeb/appsettings.json
+/StudioWeb/ScaffoldingReadMe.txt
+/.vs
+*.editorconfig
