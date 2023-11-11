@@ -1,15 +1,16 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using StudioWeb.Areas.Identity.Data;
-using StudioWeb.Data;
+using StudioData.Data;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 ////Config Serilog
-//builder.Host.UseSerilog((HostBuilderCtx, LoggerConf) => {
-//    LoggerConf
-//    .WriteTo.Console() // Escribe en la consola
-//    .WriteTo.Debug()   // Escriba en debug
-//    .ReadFrom.Configuration(HostBuilderCtx.Configuration);
-//});
+builder.Host.UseSerilog((HostBuilderCtx, LoggerConf) =>
+{
+    LoggerConf
+    .WriteTo.Console() // Escribe en la consola
+    .WriteTo.Debug()   // Escriba en debug
+    .ReadFrom.Configuration(HostBuilderCtx.Configuration);
+});
 var connectionString = builder.Configuration.GetConnectionString("StudioWebContextConnection") ?? throw new InvalidOperationException("Connection string 'StudioWebContextConnection' not found.");
 
 builder.Services.AddDbContext<StudioWebContext>(options => options.UseSqlServer(connectionString));

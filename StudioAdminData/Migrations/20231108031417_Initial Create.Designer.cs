@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StudioWeb.Data;
+using StudioData.Data;
 
 #nullable disable
 
 namespace StudioWeb.Migrations
 {
     [DbContext(typeof(StudioWebContext))]
-    partial class StudioWebContextModelSnapshot : ModelSnapshot
+    [Migration("20231108031417_Initial Create")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,9 +169,6 @@ namespace StudioWeb.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("Birthdate")
-                        .HasColumnType("Datetime");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()

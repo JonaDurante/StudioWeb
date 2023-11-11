@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StudioWeb.Data;
+using StudioData.Data;
 
 #nullable disable
 
 namespace StudioWeb.Migrations
 {
     [DbContext(typeof(StudioWebContext))]
-    [Migration("20231108031417_Initial Create")]
-    partial class InitialCreate
+    [Migration("20231109014812_Add register")]
+    partial class Addregister
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,6 +169,9 @@ namespace StudioWeb.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("Datetime");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
