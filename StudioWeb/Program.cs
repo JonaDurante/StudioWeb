@@ -25,6 +25,10 @@ builder.Services.AddDefaultIdentity<StudioWebUser>(options =>
 })
 .AddEntityFrameworkStores<StudioWebContext>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -50,7 +54,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-//app.UseSerilogRequestLogging();
+app.UseSerilogRequestLogging();
 
 app.MapControllerRoute(
     name: "default",

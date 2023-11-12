@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudioWeb", "StudioWeb\StudioWeb.csproj", "{A9E2411A-6A92-4957-BDD3-3537D0253F28}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9FAAB876-EABE-414A-8FA8-908D6ECBB4AE} = {9FAAB876-EABE-414A-8FA8-908D6ECBB4AE}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E844C463-23C9-48C1-9CC9-83F3A0E8B0FF}"
 	ProjectSection(SolutionItems) = preProject
