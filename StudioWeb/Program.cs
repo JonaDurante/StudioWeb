@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using StudioData.Data;
 using Serilog;
+using StudioData.Data;
+using StudioData.Interfaces;
+using StudioData.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 ////Config Serilog
@@ -15,12 +17,25 @@ var connectionString = builder.Configuration.GetConnectionString("StudioWebConte
 
 builder.Services.AddDbContext<StudioWebContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<StudioWebUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<StudioWebContext>();
+builder.Services.AddDefaultIdentity<StudioWebUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;
+})
+.AddEntityFrameworkStores<StudioWebContext>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<ICourseServices, CourseServices>();
+builder.Services.AddScoped(typeof(ICommonServices<>), typeof(CommonServices<>));
+builder.Services.AddScoped<IThirdServices, ThirdServices>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
