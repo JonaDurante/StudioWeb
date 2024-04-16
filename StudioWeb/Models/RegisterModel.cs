@@ -13,7 +13,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 
-namespace StudioWeb.Areas.Identity.Pages.Account
+namespace StudioWeb.Models
 {
     public class RegisterModel : PageModel
     {
@@ -66,14 +66,15 @@ namespace StudioWeb.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name ="First Name")]
+            [Display(Name = "First Name")]
             public string FirstName { get; set; }
-
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            public string? PilaName { get; set; }
             [Required]
             [DataType(DataType.Text)]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
-
             [Required]
             [DataType(DataType.Date)]
             [Display(Name = "Birthdate")]
@@ -127,6 +128,7 @@ namespace StudioWeb.Areas.Identity.Pages.Account
                 var user = CreateUser();
 
                 user.FirstName = Input.FirstName;
+                user.PilaName = Input.PilaName;
                 user.LastName = Input.LastName;
                 user.Birthdate = Input.Birthdate;
 
@@ -144,7 +146,7 @@ namespace StudioWeb.Areas.Identity.Pages.Account
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId, code, returnUrl },
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
@@ -152,7 +154,7 @@ namespace StudioWeb.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
                     }
                     else
                     {

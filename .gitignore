@@ -9,3 +9,7 @@
 /.vs
 *.editorconfig
 /StudioWeb/obj
+/StudioAdminData/bin/Debug/net7.0
+/StudioWeb.Test/bin/Debug/net7.0
+/StudioWeb.Test/obj
+/StudioAdminData/obj/Release/net7.0

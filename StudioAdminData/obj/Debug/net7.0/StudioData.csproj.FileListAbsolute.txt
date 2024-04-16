@@ -12,3 +12,4 @@ E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\refint\StudioData.
 E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.pdb
 E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.genruntimeconfig.cache
 E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\ref\StudioData.dll
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.sourcelink.json

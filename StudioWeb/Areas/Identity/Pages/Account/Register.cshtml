@@ -1,4 +1,5 @@
 ﻿@page
+@using StudioWeb.Models
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
@@ -21,12 +22,17 @@
                 </div>
                 <div class="col-6">
                     <div class="form-floating mb-4">
-                        <input asp-for="Input.LastName" class="form-control" autocomplete="lastName" aria-required="true" placeholder="lastName" />
-                        <label asp-for="Input.LastName">LastName</label>
-                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                        <input asp-for="Input.PilaName" class="form-control" autocomplete="pilaName" aria-required="false" placeholder="pilaName" />
+                        <label asp-for="Input.PilaName">PilaName</label>
+                        <span asp-validation-for="Input.PilaName" class="text-danger"></span>
                     </div>
                 </div>                              
             </div>
+            <div class="form-floating mb-4">
+                <input asp-for="Input.LastName" class="form-control" autocomplete="lastName" aria-required="true" placeholder="lastName" />
+                <label asp-for="Input.LastName">LastName</label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>            
             <div class="form-floating mb-4">
                 <input asp-for="Input.Birthdate" class="form-control" autocomplete="birthdate" aria-required="true" placeholder="Birthdate" />
                 <label asp-for="Input.Birthdate">Birthdate</label>
