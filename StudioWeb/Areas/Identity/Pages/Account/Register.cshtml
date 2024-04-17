@@ -26,13 +26,13 @@
                         <label asp-for="Input.PilaName">PilaName</label>
                         <span asp-validation-for="Input.PilaName" class="text-danger"></span>
                     </div>
-                </div>                              
+                </div>
             </div>
             <div class="form-floating mb-4">
                 <input asp-for="Input.LastName" class="form-control" autocomplete="lastName" aria-required="true" placeholder="lastName" />
                 <label asp-for="Input.LastName">LastName</label>
                 <span asp-validation-for="Input.LastName" class="text-danger"></span>
-            </div>            
+            </div>
             <div class="form-floating mb-4">
                 <input asp-for="Input.Birthdate" class="form-control" autocomplete="birthdate" aria-required="true" placeholder="Birthdate" />
                 <label asp-for="Input.Birthdate">Birthdate</label>
@@ -44,14 +44,22 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-floating mb-4">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <input asp-for="Input.Password" id="passwordInput2" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label asp-for="Input.Password">Password</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-floating mb-4">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <input asp-for="Input.ConfirmPassword" id="passwordInput3" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="row justify-content-center">
+                <div class="checkbox mb-3 col-6">
+                    <label>
+                        <input type="checkbox" id="togglePassword" class="form-check-input" />
+                        Show Password
+                    </label>
+                </div>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary mt-3">Register</button>
         </form>
@@ -91,3 +99,11 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<script>
+    document.getElementById("togglePassword").addEventListener("change", function () {
+        togglePasswordVisibility("passwordInput2");
+        togglePasswordVisibility("passwordInput3");
+    });
+</script>
+

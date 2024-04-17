@@ -2,9 +2,9 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 <div class="row justify-content-center">
-    <div class="col-4 mt-5 justify-content-center">
-        <div class="card login-logout-card bg-dark" style="border-radius: 13px;">
-            <div class="card-header bg-secondary">
+    <div class="col-4 mt-5 justify-content-center" style="border-radius: 13px">
+        <div class="card login-logout-card bg-dark" style="border-radius: 13px">
+            <div class="card-header bg-secondary" style="border-top-left-radius: 13px; border-top-right-radius: 13px">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
                         <a class="nav-link" href="/Identity/Account/Login">
@@ -31,15 +31,25 @@
 @section Scripts {
     @await RenderSectionAsync("Scripts", required: false)
     <script>
-        $(function(){
+        $(function () {
             const currentPage = location.pathname;
-            $('nav-tabs li a').each(function () { 
+            $('nav-tabs li a').each(function () {
                 const $this = $(this);
-                if (currentPage.toLowerCase().indexOf($this.attr('href').toLowerCase()) !== -1)
-                {
+                if (currentPage.toLowerCase().indexOf($this.attr('href').toLowerCase()) !== -1) {
                     $this.addClass('active');
                 }
             })
         })
+
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = $("#" + inputId);
+            if (passwordInput.val().trim() !== "") {
+                if (passwordInput.attr("type") === "password") {
+                    passwordInput.attr("type", "text");
+                } else {
+                    passwordInput.attr("type", "password");
+                }
+            }
+        }
     </script>
 }
