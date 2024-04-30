@@ -1,6 +1,6 @@
 ﻿namespace StudioData.Models.JWT
 {
-    public class UserToken
+    public class UserToken 
     {
         public Guid Id { get; set; }
         public string? Token { get; set; }

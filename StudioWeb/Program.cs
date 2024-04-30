@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using StudioData.Data;
 using StudioData.Interfaces;
 using StudioData.Services;
+using StudioWeb;
 
 var builder = WebApplication.CreateBuilder(args);
 ////Config Serilog
@@ -15,24 +17,25 @@ builder.Host.UseSerilog((HostBuilderCtx, LoggerConf) =>
 });
 var connectionString = builder.Configuration.GetConnectionString("StudioWebContextConnection") ?? throw new InvalidOperationException("Connection string 'StudioWebContextConnection' not found.");
 
-builder.Services.AddDbContext<StudioWebContext>(options => options.UseSqlServer(connectionString));
+builder.Services
+    .AddDbContext<StudioWebContext>(options => options.UseSqlServer(connectionString))
+    .AddDefaultIdentity<StudioWebUser>(options =>
+        {
+            options.SignIn.RequireConfirmedAccount = false;
+            options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            options.User.RequireUniqueEmail = true;
+        })
+    .AddEntityFrameworkStores<StudioWebContext>()
+    .AddDefaultTokenProviders();
 
-builder.Services.AddDefaultIdentity<StudioWebUser>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = false;
-    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-    options.User.RequireUniqueEmail = true;
-})
-.AddEntityFrameworkStores<StudioWebContext>();
+builder.Services.AddJwtTokenServices(builder.Configuration);
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-});
+builder.Services
+    .AddHttpContextAccessor()
+    .AddAuthorization();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IActivityService, ActivityService>();
@@ -48,13 +51,13 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
-app.UseStaticFiles();
 
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.UseSerilogRequestLogging();
+app.UseStaticFiles()
+   .UseHttpsRedirection()
+   .UseRouting()
+   .UseAuthentication()
+   .UseAuthorization()
+   .UseSerilogRequestLogging();
 
 app.MapControllerRoute(
     name: "default",
