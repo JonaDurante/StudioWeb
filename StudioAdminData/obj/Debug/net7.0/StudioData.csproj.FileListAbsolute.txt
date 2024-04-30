@@ -1,0 +1,15 @@
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.csproj.AssemblyReference.cache
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.GeneratedMSBuildEditorConfig.editorconfig
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.AssemblyInfoInputs.cache
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.AssemblyInfo.cs
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.csproj.CoreCompileInputs.cache
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\bin\Debug\net7.0\StudioData.deps.json
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\bin\Debug\net7.0\StudioData.runtimeconfig.json
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\bin\Debug\net7.0\StudioData.dll
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\bin\Debug\net7.0\StudioData.pdb
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.dll
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\refint\StudioData.dll
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.pdb
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.genruntimeconfig.cache
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\ref\StudioData.dll
+E:\Repos\StudioWeb\StudioWeb\StudioAdminData\obj\Debug\net7.0\StudioData.sourcelink.json
