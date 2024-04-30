@@ -12245,11 +12245,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Repos\\StudioWeb\\StudioWeb\\StudioAdminData\\StudioData.csproj",
+      "projectUniqueName": "E:\\Repos\\_StudioWeb\\StudioWeb\\StudioAdminData\\StudioData.csproj",
       "projectName": "StudioData",
-      "projectPath": "E:\\Repos\\StudioWeb\\StudioWeb\\StudioAdminData\\StudioData.csproj",
+      "projectPath": "E:\\Repos\\_StudioWeb\\StudioWeb\\StudioAdminData\\StudioData.csproj",
       "packagesPath": "C:\\Users\\jonat\\.nuget\\packages\\",
-      "outputPath": "E:\\Repos\\StudioWeb\\StudioWeb\\StudioAdminData\\obj\\",
+      "outputPath": "E:\\Repos\\_StudioWeb\\StudioWeb\\StudioAdminData\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jonat\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Nw3eETWQnbLedEuEzU6mTTpQ/N5qhSCURqt7+fSnGHGplGYnRCWMmYema8Pb5W4Sp9Sinw7CeLe4ysezgf9AwQ==",
+  "dgSpecHash": "rS+FaPovTQewBlHIOVqgbl3MbKypOgqLTIpmri8hFO1P2soRZvXf5Zd0dqS10SEAjPzAusFxk/pvlClLidTneA==",
   "success": true,
-  "projectFilePath": "E:\\Repos\\StudioWeb\\StudioWeb\\StudioAdminData\\StudioData.csproj",
+  "projectFilePath": "E:\\Repos\\_StudioWeb\\StudioWeb\\StudioAdminData\\StudioData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jonat\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\jonat\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
