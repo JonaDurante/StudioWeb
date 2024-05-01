@@ -3,18 +3,13 @@
 #nullable disable
 
 
-using Azure.Core;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudioData.Data;
 using StudioData.Models.JWT;
-using StudioWeb.Helppers;
 using System.ComponentModel.DataAnnotations;
-using System.Security.Claims;
 
 namespace StudioWeb.Models
 {
@@ -86,7 +81,11 @@ namespace StudioWeb.Models
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    var roles = await _userManager.GetRolesAsync(user);
+                    var claims = await _userManager.GetClaimsAsync(user);
+
+                    _logger.LogInformation("User logged in. Roles: {roles}, Claims: {claims}", roles, claims);
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

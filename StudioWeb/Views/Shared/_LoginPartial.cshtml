@@ -3,7 +3,11 @@
 
 @inject SignInManager<StudioWebUser> SignInManager
 @inject UserManager<StudioWebUser> UserManager
-
+@{
+    var userr = User;
+    var isSigned = SignInManager.IsSignedIn(User);
+    var some = SignInManager.UserManager.GetUserAsync(User);
+}
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {

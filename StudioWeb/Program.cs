@@ -19,14 +19,22 @@ var connectionString = builder.Configuration.GetConnectionString("StudioWebConte
 
 builder.Services
     .AddDbContext<StudioWebContext>(options => options.UseSqlServer(connectionString))
-    .AddDefaultIdentity<StudioWebUser>(options =>
+    .AddIdentity<StudioWebUser,IdentityRole>(options =>
         {
             options.SignIn.RequireConfirmedAccount = false;
             options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
             options.User.RequireUniqueEmail = true;
         })
+    .AddSignInManager<SignInManager<StudioWebUser>>()
     .AddEntityFrameworkStores<StudioWebContext>()
     .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Puedes ajustar según necesidades
+});
 
 builder.Services.AddJwtTokenServices(builder.Configuration);
 
@@ -52,12 +60,12 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 
-app.UseStaticFiles()
-   .UseHttpsRedirection()
-   .UseRouting()
-   .UseAuthentication()
-   .UseAuthorization()
-   .UseSerilogRequestLogging();
+app.UseStaticFiles();
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseSerilogRequestLogging();
 
 app.MapControllerRoute(
     name: "default",
