@@ -3,14 +3,12 @@
 #nullable disable
 
 
-using Azure.Core;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StudioData.Data;
+using StudioData.Models.Business;
 using StudioData.Models.JWT;
 using StudioWeb.Helppers;
 using System.ComponentModel.DataAnnotations;
@@ -23,14 +21,14 @@ namespace StudioWeb.Models
         private readonly SignInManager<StudioWebUser> _signInManager;
         private readonly UserManager<StudioWebUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly JwtSettings _jwtSettings;
+        //private readonly JwtSettings _jwtSettings;
 
-        public LoginModel(SignInManager<StudioWebUser> signInManager, ILogger<LoginModel> logger, UserManager<StudioWebUser> userManager, JwtSettings jwtSettings)
+        public LoginModel(SignInManager<StudioWebUser> signInManager, ILogger<LoginModel> logger, UserManager<StudioWebUser> userManager/*, JwtSettings jwtSettings*/)
         {
             _signInManager = signInManager;
             _logger = logger;
             _userManager = userManager;
-            _jwtSettings = jwtSettings;
+            //_jwtSettings = jwtSettings;
         }
 
         [BindProperty]
@@ -83,10 +81,21 @@ namespace StudioWeb.Models
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    StudioWebUser user = await _userManager.FindByEmailAsync(Input.Email);
+                    IList<string> roles = await _userManager.GetRolesAsync(user);
+                    IList<Claim> currentClaims = await _userManager.GetClaimsAsync(user);
+                    List<string> roleClaims = currentClaims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+
+                    List<Claim> newClaims = roles.Except(roleClaims).Select(role => new Claim(ClaimTypes.Role, role)).ToList();
+
+                    if (newClaims.Any())
+                    {
+                        await _userManager.AddClaimsAsync(user, newClaims);
+                    }
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

@@ -22,5 +22,8 @@ namespace StudioData.Data
         [PersonalData]
         [Column(TypeName = "Datetime")]
         public DateTime Birthdate { get; set; }
+
+        //[NotMapped]
+        //public IEnumerable<IdentityRole> Roles { get; set; }
     }
 }
