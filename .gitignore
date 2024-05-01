@@ -13,3 +13,6 @@
 /StudioWeb.Test/bin/Debug/net7.0
 /StudioWeb.Test/obj
 /StudioAdminData/obj/Release/net7.0
+/StudioAdminData/obj/Debug/net7.0/StudioData.assets.cache
+/StudioAdminData/obj/Debug/net7.0/StudioData.AssemblyInfo.cs
+/StudioAdminData/obj/Debug/net7.0/StudioData.AssemblyInfoInputs.cache
