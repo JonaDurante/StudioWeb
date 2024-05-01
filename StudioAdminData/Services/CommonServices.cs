@@ -33,7 +33,7 @@ namespace StudioData.Services
                 if (Entity != null)
                 {
                     _context.Add(Entity);
-                    await _context.SaveChangesAsync(); // Espera a que se complete la operación asincrónica
+                    await _context.SaveChangesAsync();
                     resultado = true;
                 }
             }

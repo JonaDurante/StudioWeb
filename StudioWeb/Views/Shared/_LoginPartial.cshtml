@@ -3,21 +3,18 @@
 
 @inject SignInManager<StudioWebUser> SignInManager
 @inject UserManager<StudioWebUser> UserManager
-@{
-    var userr = User;
-    var isSigned = SignInManager.IsSignedIn(User);
-    var some = SignInManager.UserManager.GetUserAsync(User);
-}
+
 <ul class="navbar-nav">
+
     @if (SignInManager.IsSignedIn(User))
     {
         var user = await @UserManager.GetUserAsync(User);
 
         <li class="nav-item">
-            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="nav-link text-white" asp-controller="Activity" asp-action="Index">Clases</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a class="nav-link text-white" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </li>
         <li class="nav-item">
             <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hola @user.PilaName !</a>

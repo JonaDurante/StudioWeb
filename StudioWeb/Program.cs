@@ -36,7 +36,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Puedes ajustar según necesidades
 });
 
-builder.Services.AddJwtTokenServices(builder.Configuration);
+//builder.Services.AddJwtTokenServices(builder.Configuration);
 
 builder.Services
     .AddHttpContextAccessor()
@@ -63,7 +63,6 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseAuthentication();
 app.UseAuthorization();
 app.UseSerilogRequestLogging();
 

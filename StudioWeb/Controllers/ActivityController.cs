@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using StudioData.Interfaces;
 using StudioData.Models.Business;
+using StudioWeb.Helppers;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace StudioWeb.Controllers
 {
+    [Route("activity")]
     public class ActivityController : Controller
     {
         private readonly IActivityService _activityService;
@@ -15,15 +18,17 @@ namespace StudioWeb.Controllers
             _activityService = activityService;
         }
         // GET: api/<ActivityController>
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Activity>>> Get()
+        [HttpGet("index")]
+        public async Task<ActionResult<IEnumerable<Activity>>> Index()
         {
+            var isAdmin = UserHelppers.IsAdmin(User);
+
             var Actividies = await _activityService.GetAllAsync();
-            if (Actividies == null)
+            if (Actividies.Count() == 0)
             {
                 return NotFound();
             }
-            return Ok(Actividies);
+            return View(Actividies);
         }
 
         // GET api/<ActivityController>/5
@@ -40,6 +45,7 @@ namespace StudioWeb.Controllers
 
         // POST api/<ActivityController>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Post([FromBody] Activity activityValue)
         {
             if (await _activityService.UpdateAsync(activityValue))
@@ -51,6 +57,7 @@ namespace StudioWeb.Controllers
 
         // PUT api/<ActivityController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<bool>> Put([FromBody] Activity value)
         {
             if (await _activityService.InsertAsync(value))

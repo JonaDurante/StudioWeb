@@ -14,8 +14,6 @@ namespace StudioWeb.Controllers
             _courseServices = courseServices;
         }
 
-        // GET: api/Courses
-        [HttpGet]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
         {
             var Courses = await _courseServices.GetAllAsync();
